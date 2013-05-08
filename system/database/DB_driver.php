@@ -1403,6 +1403,32 @@ class CI_DB_driver {
 	protected function _reset_select()
 	{
 	}
+        
+        /*
+         *   Add this method to solve the error running test with datamapper
+         *   https://bitbucket.org/kenjis/my-ciunit/issue/11/unable-to-use-datamapper-orm-1821-in-test
+         */
+        
+        public function dm_call_method($function, $p1 = null, $p2 = null, $p3 = null, $p4 = null)
+{
+	switch (func_num_args())
+	{
+		case 1:
+			return $this->{$function}();
+		case 2:
+			return $this->{$function}($p1);
+			break;
+		case 3:
+			return $this->{$function}($p1, $p2);
+			break;
+		case 4:
+			return $this->{$function}($p1, $p2, $p3);
+			break;
+		case 5:
+			return $this->{$function}($p1, $p2, $p3, $p4);
+			break;
+	}
+}
 
 }
 

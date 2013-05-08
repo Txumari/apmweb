@@ -60,7 +60,7 @@ class PhoneCarrierModelTest extends CIUnit_TestCase
 	public function GetCarriersProvider()
 	{
 		return array(
-			array(array('name'), 5)
+			array(array('name'), 6)
 		);
 	}
 	

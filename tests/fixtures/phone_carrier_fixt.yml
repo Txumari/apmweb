@@ -18,3 +18,7 @@
     name: 'Virgin'
     txt_address: '@vmpix.com'
     txt_message_length: 160
+6:
+    name: 'Simyo'
+    txt_address: '@simyo.com'
+    txt_message_length: 140

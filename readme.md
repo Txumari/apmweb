@@ -27,7 +27,8 @@ Anyone and everyone is welcome to [contribute](https://github.com/h5bp/html5-boi
 ### Major components:
 
 * DataMapper: ORM Framework
-* : Test Framework
+* PHPUnit: Test Framework
+* my-ciunit: Fork of CIUnit
 
 * jQuery: MIT/GPL license
 * Modernizr: MIT/BSD license
