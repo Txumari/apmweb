@@ -88,13 +88,13 @@ class User extends DataMapper {
     {
         // Don't encrypt an empty string
         if (!empty($this->{$field}))
-        {
+        {   
             // Generate a random salt if empty
             if (empty($this->salt))
             {
                 $this->salt = md5(uniqid(rand(), true));
             }
-            $this->{$field} = sha1($this->salt . $this->{$field});
+            $this->{$field} = hash("sha512",$this->salt . $this->{$field});
             
         }
     }

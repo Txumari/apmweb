@@ -18,8 +18,6 @@ class UserModelTest extends CIUnit_TestCase
 		'user' => 'user'
 	);
 	
-	private $_pcm;
-	
 	public function __construct($name = NULL, array $data = array(), $dataName = '')
 	{
 		parent::__construct($name, $data, $dataName);
@@ -54,11 +52,47 @@ class UserModelTest extends CIUnit_TestCase
 		//parent::tearDown();
 	}
         
-        public function testEncryptEmpty()
+        public function testEncryptEmptyPassword()
         {
              $u = new User();
-             //$u->password = 'password';
-             $this->assertEmpty($u->_encrypt(''));
+             $u->password = '';
+            $u->_encrypt("password");
+             $this->assertEmpty($u->password);
+        }
+        
+        public function testEncryptEmptySalt()
+        {
+             $u = new User();
+             $u->password = 'password';
+             $u->salt = '';
+            $u->_encrypt("password");
+             $this->assertNotEmpty($u->salt);
+        }
+        
+        public function testEncriptSaltEquals()
+        {
+            $u = new User();
+            $u->password = 'password';
+            $u->salt = 'saltEncripted';
+            $u->_encrypt("password");
+            $this->assertEquals($u->salt, 'saltEncripted');
+        }
+        
+        public function testEncriptPasswordNotEquals()
+        {
+            $u = new User();
+            $u->password = 'password';
+            $u->_encrypt($u->password);
+            $this->assertNotEquals($u->password, 'password');
+        }
+        
+        public function testEncriptPasswordSaltSHA512()
+        {
+            $u = new User();
+            $u->password = 'passwordSinEncriptar';
+            $u->salt = 'saltEncripted';
+            $u->_encrypt("password");
+            $this->assertEquals($u->password, hash("sha512",'saltEncripted' . 'passwordSinEncriptar'));            
         }
 }
 
