@@ -94,6 +94,38 @@ class UserModelTest extends CIUnit_TestCase
             $u->_encrypt("password");
             $this->assertEquals($u->password, hash("sha512",'saltEncripted' . 'passwordSinEncriptar'));            
         }
+        
+        public function testLoginEmptyUser()
+        {
+            $u = new User();
+            $u->name = '';
+            $u->password = 'password';
+            $this->assertFalse($u->login());
+        }
+        
+        //Se desconoce como realizar el test unitario.
+        
+//        public function testLogin()
+//        {
+//            //Creo un mock de user que tiene un metodo get
+//            $userMock = $this->getMock('user', array('validate','get'));
+//            
+//            //Ahora definimos el resultado esperado
+//            $userMock->expects($this->once())
+//                    ->method('get')
+//                    ->will($this->returnValue(true));
+//            
+//            $u = new User();
+//            $u->name = 'FredSmith3';
+//            $u->password = 'apples';
+//            $u->confirm_password = 'apples';
+//            $u->salt = '9d6492588e23214c216e36fed2648437';
+//            $u->email = 'fred@smith3.com';
+//            
+//            $this->assertTrue($u->login());
+//        }
+        
+        
 }
 
 ?>

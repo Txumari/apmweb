@@ -1,9 +1,16 @@
 <?php
 
-/**
- * @group Controller
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
  */
 
+/**
+ * Description of UserControllerTest
+ *
+ * @author JesusM
+ * @date 11-may-2013
+ */
 class SomeControllerTest extends CIUnit_TestCase
 {
 	public function setUp()
@@ -12,7 +19,7 @@ class SomeControllerTest extends CIUnit_TestCase
 		$this->CI = set_controller('welcome');
 	}
 	
-	public function testWelcomeController()
+	public function testUserController()
 	{
 		// Call the controllers method
 		$this->CI->index();
@@ -25,3 +32,5 @@ class SomeControllerTest extends CIUnit_TestCase
                 $this->assertSame(0, preg_match('/(error|notice)/i', $out));
 	}
 }
+
+?>

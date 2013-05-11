@@ -13,55 +13,98 @@
  */
 class Users extends CI_Controller {
 
-    function Users()
-    {
-        parent::__construct();
-    }
+    function __construct()
+	{
+		parent::__construct();
+		$this->load->library('login_manager', array('autologin' => FALSE));
+	}
 
+//    function index()
+//    {
+//        // Let's create a user for my testing
+//        $u = new User();
+//        $u->name = 'FredSmith3';
+//        $u->password = 'apples';
+//        $u->confirm_password = 'apples';
+//        $u->salt = '9d6492588e23214c216e36fed2648437';
+//        $u->email = 'fred@smith3.com';
+//
+//        // And save them to the database (validation rules will run)
+//        
+//        if ($u->save())
+//        {
+//            // User object now has an ID
+//            echo 'ID: ' . $u->id . '<br />';
+//            echo 'Username: ' . $u->name . '<br />';
+//            echo 'Email: ' . $u->email . '<br />';
+//
+//            // Not that we'd normally show the password, but when we do, you'll see it has been automatically encrypted
+//            // since the User model is setup with an encrypt rule in the $validation array for the password field
+//            echo 'Password: ' . $u->password . '<br />';
+//        }
+//        else
+//        {
+//            // If validation fails, we can show the error for each property
+//            echo $u->error->name;
+//            echo $u->error->password;
+//            echo $u->error->email;
+//
+//            // or we can loop through the error's all list
+//            foreach ($u->error->all as $error)
+//            {
+//                echo $error;
+//            }
+//
+//            // or we can just show all errors in one string!
+//            echo $u->error->string;
+//
+//            // Each individual error is automatically wrapped with an error_prefix and error_suffix, which you can change (default: <p>error message</p>)
+//        }
+//
+//    }
+
+    
+    
     function index()
     {
-        // Let's create a user
-        $u = new User();
-        $u->name = 'FredSmith1';
-        $u->password = 'apples';
-        $u->confirm_password = 'apples';
-        $u->salt = '9d6492588e23214c216e36fed2648437';
-        $u->email = 'fred@smith8.com';
-
-        // And save them to the database (validation rules will run)
-        
-        if ($u->save())
+        $user = $this->login_manager->get_user();
+        if($user !== FALSE)
         {
-            // User object now has an ID
-            echo 'ID: ' . $u->id . '<br />';
-            echo 'Username: ' . $u->name . '<br />';
-            echo 'Email: ' . $u->email . '<br />';
-
-            // Not that we'd normally show the password, but when we do, you'll see it has been automatically encrypted
-            // since the User model is setup with an encrypt rule in the $validation array for the password field
-            echo 'Password: ' . $u->password . '<br />';
+            // already logged in, redirect to welcome page
+            redirect('welcome');
         }
-        else
+        // Create a user to store the login validation
+        $user = new User();
+        if($this->input->post('username') !== FALSE)
         {
-            // If validation fails, we can show the error for each property
-            echo $u->error->name;
-            echo $u->error->password;
-            echo $u->error->email;
-
-            // or we can loop through the error's all list
-            foreach ($u->error->all as $error)
+            // A login was attempted, load the user data
+            $user->from_array($_POST, array('username', 'password'));
+            // get the result of the login request
+            $login_redirect = $this->login_manager->process_login($user);
+            if($login_redirect)
             {
-                echo $error;
+                if($login_redirect === TRUE)
+                {
+                    // if the result was simply TRUE, redirect to the welcome page.
+                    redirect('welcome');
+                }
+                else
+                {
+                    // otherwise, redirect to the stored page that was last accessed.
+                    redirect($login_redirect);
+                }
             }
-
-            // or we can just show all errors in one string!
-            echo $u->error->string;
-
-            // Each individual error is automatically wrapped with an error_prefix and error_suffix, which you can change (default: <p>error message</p>)
         }
 
-    }
+        $user->load_extension('htmlform');
 
+        $this->output->enable_profiler(TRUE);
+        $this->load->view('template_header', array('title' => 'Login', 'hide_nav' => TRUE));
+        $this->load->view('login', array('user' => $user));
+        $this->load->view('template_footer');
+    }
+    
+    
     function register()
     {
         // Create user object
@@ -95,7 +138,7 @@ class Users extends CI_Controller {
         // Put user supplied data into user object
         // (no need to validate the post variables in the controller,
         // if you've set your DataMapper models up with validation rules)
-        $u->username = $this->input->post('username');
+        $u->username = $this->input->post('name');
         $u->password = $this->input->post('password');
 
         // Attempt to log user in with the data they supplied, using the login function setup in the User model
@@ -108,7 +151,8 @@ class Users extends CI_Controller {
         else
         {
             // Show the custom login error message
-            echo '<p>' . $u->error->login . '</p>';
+            //echo '<p>' . $u->error->login . '</p>';
+            $this->load->view('login');
         }
     }
 }
