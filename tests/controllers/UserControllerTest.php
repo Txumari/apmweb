@@ -11,12 +11,12 @@
  * @author JesusM
  * @date 11-may-2013
  */
-class SomeControllerTest extends CIUnit_TestCase
+class UserControllerTest extends CIUnit_TestCase
 {
 	public function setUp()
 	{
 		// Set the tested controller
-		$this->CI = set_controller('welcome');
+		$this->CI = set_controller('account');
 	}
 	
 	public function testUserController()

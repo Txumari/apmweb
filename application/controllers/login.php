@@ -11,12 +11,12 @@
  * @author JesusM
  * @date 07-may-2013
  */
-class Users extends CI_Controller {
+class Login extends CI_Controller {
 
     function __construct()
 	{
 		parent::__construct();
-		$this->load->library('login_manager', array('autologin' => FALSE));
+		$this->load->library('login_manager');
 	}
 
 //    function index()
@@ -67,6 +67,7 @@ class Users extends CI_Controller {
     
     function index()
     {
+        $this->load->helper('url');
         $user = $this->login_manager->get_user();
         if($user !== FALSE)
         {
@@ -75,14 +76,20 @@ class Users extends CI_Controller {
         }
         // Create a user to store the login validation
         $user = new User();
-        if($this->input->post('username') !== FALSE)
+        if($this->input->post('name') !== FALSE)
         {
             // A login was attempted, load the user data
-            $user->from_array($_POST, array('username', 'password'));
+            //$user->from_array($_POST, array('name', 'password'));
+            
+            $user->name = $this->input->post('name');
+            $user->password = $this->input->post('password');
             // get the result of the login request
+            
             $login_redirect = $this->login_manager->process_login($user);
+            
             if($login_redirect)
             {
+                echo "hola";
                 if($login_redirect === TRUE)
                 {
                     // if the result was simply TRUE, redirect to the welcome page.
@@ -96,12 +103,15 @@ class Users extends CI_Controller {
             }
         }
 
-        $user->load_extension('htmlform');
+        //$user->load_extension('htmlform');
+        // Sustituimos esto por html o el helper de html en la vista
 
+        
         $this->output->enable_profiler(TRUE);
-        $this->load->view('template_header', array('title' => 'Login', 'hide_nav' => TRUE));
+        
+        $this->load->view('header', array('title' => 'Login'));
         $this->load->view('login', array('user' => $user));
-        $this->load->view('template_footer');
+        $this->load->view('footer');
     }
     
     
@@ -130,31 +140,6 @@ class Users extends CI_Controller {
         }
     }
 
-    function login()
-    {
-        // Create user object
-        $u = new User();
-
-        // Put user supplied data into user object
-        // (no need to validate the post variables in the controller,
-        // if you've set your DataMapper models up with validation rules)
-        $u->username = $this->input->post('name');
-        $u->password = $this->input->post('password');
-
-        // Attempt to log user in with the data they supplied, using the login function setup in the User model
-        // You might want to have a quick look at that login function up the top of this page to see how it authenticates the user
-        if ($u->login())
-        {
-            echo '<p>Welcome ' . $u->username . '!</p>';
-            echo '<p>You have successfully logged in so now we know that your email is ' . $u->email . '.</p>';
-        }
-        else
-        {
-            // Show the custom login error message
-            //echo '<p>' . $u->error->login . '</p>';
-            $this->load->view('login');
-        }
-    }
 }
 
 /* End of file users.php */
