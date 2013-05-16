@@ -32,22 +32,17 @@ class account extends CI_Controller {
     function add_user() {
 
         $u = new User();
-//        $u = new User();
-//        $u->name = 'FredSmith3';
-//        $u->password = 'apples';
-//        $u->confirm_password = 'apples';
-//        $u->salt = '9d6492588e23214c216e36fed2648437';
-//        $u->email = 'fred@smith3.com';
-
         if ($this->input->post('name') != FALSE) {
-           
+
             $u->name = $this->input->post('name');
             $u->password = $this->input->post('password');
             $u->confirm_password = $this->input->post('confirm_password');
             $u->email = $this->input->post('email');
+            $u->confirm_email = $this->input->post('confirm_email');
+
             $u->rol = $this->input->post('role');
             if ($u->save()) {
-        
+
                 $message = 'You have successfully registered the user';
                 //@TODO Mostrar la variable message en el header si existe
                 $this->session->set_flashdata('message', $message);
@@ -57,9 +52,53 @@ class account extends CI_Controller {
 
         $this->output->enable_profiler(TRUE);
 
-        $this->load->view('header', array('title' => 'Login'));
+        $this->load->view('header', array('title' => 'New User'));
         $this->load->view('account/add', array('user' => $u));
         $this->load->view('footer');
+    }
+
+    function edit_user($id = -1) {
+        $this->output->enable_profiler(TRUE);
+
+        $u = new User();
+
+        if ($this->input->post('id') == FALSE) {
+            $u->get_by_id($id);
+
+            if (!$u->name) {
+                $message = 'User error, try Again.';
+                //@TODO Mostrar la variable message en el header si existe
+                $this->session->set_flashdata('message', $message);
+                redirect('account/user_list');
+            } else {
+                $this->load->view('header', array('title' => 'Edit User'));
+                $this->load->view('account/edit', array('user' => $u));
+                $this->load->view('footer');
+            }
+        } else {
+            $u->id = $this->input->post('id');
+            $u->where('id', $u->id)->get();
+            if ($this->input->post('password') != FALSE) {
+                $u->password = $this->input->post('password');
+                $u->confirm_password = $this->input->post('confirm_password');
+            }
+            $u->name = $this->input->post('name');
+            $u->email = $this->input->post('email');
+            $u->confirm_email = $this->input->post('confirm_email');
+            $u->rol = $this->input->post('role');
+
+            //$u->where('id =', $u->id)->update(array('name' => $u->name, 'email' => $u->email, 'rol' => $u->rol), FALSE);
+
+            if ($u->save()) {
+                $message = 'You have successfully update the user';
+                $this->session->set_flashdata('message', $message);
+                redirect('account/user_list');
+            } else {
+                $this->load->view('header', array('title' => 'Edit User'));
+                $this->load->view('account/edit', array('user' => $u));
+                $this->load->view('footer');
+            }
+        }
     }
 
     function active_user() {

@@ -6,6 +6,7 @@
         <th>Email</th>
         <th>Active</th>
         <th>Role</th>
+        <th>Options</th>
         </thead>
         <tbody>
 
@@ -18,6 +19,7 @@
                     <td><?php echo $user->email; ?></td>
                     <td><?php echo $user->active; ?></td>
                     <td><?php echo $user->rol; ?></td>
+                    <td><a href='<?php echo site_url("account/edit_user").'/'.$user->id;  ?>'>Edit</a></td>
                 </tr>
                 
                 <?php

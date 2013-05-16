@@ -4,8 +4,9 @@
 
 
 
-<form method="POST" class="form-horizontal"  <?php echo 'action="' . site_url("account/add_user") . '">'; ?>
+<form method="POST" class="form-horizontal"  <?php echo 'action="' . site_url("account/edit_user") . '">'; ?>
       <div class="control-group">
+          <input type="hidden" <?php if(isset($user) && !empty($user)){ echo 'value="'.$user->id.'"'; } ?> name="id">
         <label class="control-label" for="inputName">Name</label>
         <div class="controls">
             <input type="text" id="inputName" name="name" placeholder="Name" 
@@ -15,13 +16,13 @@
     <div class="control-group">
         <label class="control-label" for="inputPassword">Password</label>
         <div class="controls">
-            <input type="password" id="inputPassword" name="password" placeholder="Password" required>
+            <input type="password" id="inputPassword" name="password" placeholder="Password">
         </div>
     </div>
     <div class="control-group">
         <label class="control-label" for="inputRepeatPassword">Repeat Password</label>
         <div class="controls">
-            <input type="password" id="inputRepeatPassword" name="confirm_password" placeholder="Password" required>
+            <input type="password" id="inputRepeatPassword" name="confirm_password" placeholder="Password">
         </div>
     </div>
     <div class="control-group">
