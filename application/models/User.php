@@ -16,8 +16,27 @@ class User extends DataMapper {
     var $table = 'user';
 
     // Database table relations
-    // var $has_many = array('table_name');
+    var $auto_populate_has_one = TRUE;
+    var $auto_populate_has_many = TRUE;
+    //public $has_many = array("projects");
 
+    // var $has_one = array();
+    var $has_one = array(
+        'project_client' => array(
+            'class' => 'project',
+            'other_field' => 'client'
+        ),
+        'project_scrum_master' => array(
+            'class' => 'project',
+            'other_field' => 'scrum_master'
+        ),
+        'project' => array(
+            'class' => 'project',
+            'other_field' => 'user'
+        )
+    );
+    
+    
     // Form Validations
     var $validation = array(
         'name' => array(

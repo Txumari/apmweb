@@ -20,7 +20,6 @@ class account extends CI_Controller {
     }
 
     function index() {
-        $this->load->helper('url');
 
         $this->login_manager->logout();
 
