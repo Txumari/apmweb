@@ -21,7 +21,7 @@ class User extends DataMapper {
     //public $has_many = array("projects");
 
     // var $has_one = array();
-    var $has_one = array(
+    var $has_many = array(
         'project_client' => array(
             'class' => 'project',
             'other_field' => 'client'

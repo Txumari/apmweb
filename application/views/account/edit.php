@@ -6,7 +6,7 @@
 
 <form method="POST" class="form-horizontal"  <?php echo 'action="' . site_url("account/edit_user") . '">'; ?>
       <div class="control-group">
-          <input type="hidden" <?php if(isset($user) && !empty($user)){ echo 'value="'.$user->id.'"'; } ?> name="id">
+        <input type="hidden" <?php if(isset($user) && !empty($user)){ echo 'value="'.$user->id.'"'; } ?> name="id">
         <label class="control-label" for="inputName">Name</label>
         <div class="controls">
             <input type="text" id="inputName" name="name" placeholder="Name" 

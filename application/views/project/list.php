@@ -28,7 +28,10 @@
                             
                         ?>
                     </td>
-                    <td><a href='<?php echo site_url("account/edit_project").'/'.$project->id;  ?>'>Edit</a></td>
+                    <td>
+                        <a href='<?php echo site_url("projects/edit").'/'.$project->id;  ?>'>Edit</a>
+                        <a href='<?php echo site_url("projects/delete").'/'.$project->id;  ?>'>Delete</a>
+                    </td>
                 </tr>
                 
                 <?php

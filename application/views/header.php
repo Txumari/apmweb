@@ -80,5 +80,15 @@
             <?php
             }
         }
+		if (!isset($message_error)) {
+            $message_error = $this->session->flashdata('message_error');
+            if (!empty($message_error)) {
+                ?>
+                <section>
+                    <div id="page_message" class="alert alert-error"><?php echo htmlspecialchars($message_error); ?></div>
+                </section>
+            <?php
+            }
+        }
         ?>
             

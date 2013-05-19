@@ -65,9 +65,9 @@ class account extends CI_Controller {
             $u->get_by_id($id);
 
             if (!$u->name) {
-                $message = 'User error, try Again.';
+                $message_error = 'User error, try Again.';
                 //@TODO Mostrar la variable message en el header si existe
-                $this->session->set_flashdata('message', $message);
+                $this->session->set_flashdata('message_error', $message_error);
                 redirect('account/user_list');
             } else {
                 $this->load->view('header', array('title' => 'Edit User'));
