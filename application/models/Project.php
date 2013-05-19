@@ -51,10 +51,6 @@ class Project extends DataMapper {
         'scrum_master' => array(
             'label' => 'Scrum Master',
             'rules' => array('required')
-        ),
-        'Members' => array(
-            'label' => 'client',
-            'rules' => array('required')
         )
     );
     
