@@ -20,7 +20,11 @@
         <div class="controls">
             <?php 
                     $this->load->helper('form');
-                    echo form_dropdown('client', $dataView['clients'],$dataView['project']->client->id); 
+                    if(isset($dataView['project']) && !empty($dataView['project'])){
+                        echo form_dropdown('client', $dataView['clients'],$dataView['project']->client->id);
+                    }else{
+                        echo form_dropdown('client', $dataView['clients']);
+                    } 
             ?>
         </div>
     </div>   
@@ -28,14 +32,48 @@
         <label class="control-label" for="input_scrum_master">Scrum Master</label>
         <div class="controls">
             <?php 
-                    if(isset($dataView['scrum_masters'])){
+                    if(isset($dataView['project']) && !empty($dataView['project'])){
                         echo form_dropdown('scrum_master', $dataView['scrum_masters'],$dataView['project']->scrum_master->id);
                     }else{
-                        echo form_dropdown('scrum_master',['No exists users']);
+                        echo form_dropdown('scrum_master', $dataView['scrum_masters']);
                     }
             ?>
         </div>
-    </div>     
+    </div>
+        <div class="control-group">
+        <label class="control-label" for="input_members">Members</label>
+        <div class="controls">
+            <?php 
+                    if(isset($dataView['project']) && !empty($dataView['project'])){
+                        foreach ($dataView['members'] as $id => $name) {
+                            //If $name is in relation user "foreach(project->user)"
+                            echo form_label($name, $id);
+                            $cheked = in_array($id, $dataView['members_relation']);
+                            $data = array(
+                                    'name'        => 'members[]',
+                                    'id'          => $id,
+                                    'value'       => $id,
+                                    'checked'     => $cheked,
+                                    );
+                            echo form_checkbox($data);
+                            // ,$dataView['project']->user->name
+                        }
+                    }else{
+                        foreach ($dataView['members'] as $id => $name) {
+                            //If $name is in relation user "foreach(project->user)"
+                            echo form_label($name, $id);
+                            $data = array(
+                                    'name'        => 'members[]',
+                                    'id'          => $id,
+                                    'value'       => $id,
+                                    'checked'     => FALSE,
+                                    );
+                            echo form_checkbox($data);
+                            // ,$dataView['project']->user->name
+                        }                    }
+            ?>
+        </div>
+    </div> 
    
     <div class="form-actions">
         <button type="submit" class="btn btn-primary">Save changes</button>

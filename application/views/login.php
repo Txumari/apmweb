@@ -1,4 +1,4 @@
-<?php $this->load->helper('url'); ?>
+<?php //$this->load->helper('url'); ?>
 
 <form class="form-inline" method="post" <?php echo 'action="' . site_url("login"). '">'; ?>
   <input type="text" class="input-small" placeholder="Email" name="name">

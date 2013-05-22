@@ -71,6 +71,7 @@
 
         <?php
         if (!isset($message)) {
+
             $message = $this->session->flashdata('message');
             if (!empty($message)) {
                 ?>

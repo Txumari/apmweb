@@ -7,46 +7,42 @@ class Login_Manager {
 	
 	var $logged_in_user = NULL;
 	
-	function __construct()
+	function __construct($params = array())
 	{
 		
 		$this->CI =& get_instance(); 
 		$this->session =& $this->CI->session;
-                
+
+		// $restric_roles = [''];
+  //       if(isset($params['restric_roles']))
+		// {
+		// 	$restric_roles = $params['restric_roles'];
+		// }   
+		// $this->check_login($restric_roles);     
 	}
 	
         
-//	function check_login($required_group = -1)
-//	{
-//		// Special auto-setup routine
-//		if( ! $this->CI->db->table_exists('users'))
-//		{
-//			redirect('admin/reset_warning');
-//		}
-//		else
-//		{
-//			// see if there are any users in the system
-//			$u = new User();
-//			if($u->count() == 0)
-//			{
-//				redirect('admin/init');
-//			}
-//		}
-//		// if not logged in, automatically redirect
-//		$u = $this->get_user();
-//		if($u === FALSE)
-//		{
-//			$this->session->set_userdata('login_redirect', uri_string());
-//			redirect('login');
-//		}
-//		if($required_group > 0)
-//		{
-//			if($u->group->id > $required_group)
-//			{
-//				show_error('You do not have access to this section.');
-//			}
-//		}
-//	}
+	function check_login()
+	{
+		$u = $this->get_user();
+		if($u === FALSE)
+		{
+			$this->session->set_flashdata('message', "Please Log in");
+			//$message = $this->session->flashdata('message');
+			redirect('login');
+			// show_error("s s");
+		}
+
+	}
+
+	function check_permision($restric_roles = ['']){
+		$u = $this->get_user();
+		var_dump($restric_roles);
+		if(in_array($u->rol,$restric_roles))
+		{
+			show_error('You do not have access to this section.');
+		}
+	}
 	
 	/**
 	 * process_login
@@ -94,7 +90,7 @@ class Login_Manager {
 			{
 				return FALSE;
 			}
-                        $this->session =& $this->CI->session;
+            $this->session =& $this->CI->session;
 			$id = $this->session->userdata('logged_in_id');
 			if(is_numeric($id))
 			{

@@ -16,7 +16,8 @@ class Login extends CI_Controller {
     function __construct()
 	{
 		parent::__construct();
-		$this->load->library('login_manager');
+		
+        $this->load->library('login_manager');
 	}
 
 //    function index()
@@ -67,7 +68,7 @@ class Login extends CI_Controller {
     
     function index()
     {
-        $this->load->helper('url');
+        //$this->load->helper('url');
         $user = $this->login_manager->get_user();
         if($user !== FALSE)
         {
@@ -102,10 +103,6 @@ class Login extends CI_Controller {
                 }
             }
         }
-
-        //$user->load_extension('htmlform');
-        // Sustituimos esto por html o el helper de html en la vista
-
         
         $this->output->enable_profiler(TRUE);
         
