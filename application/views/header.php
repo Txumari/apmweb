@@ -65,7 +65,7 @@
     </head>
     <body>
         <header>
-
+        		<?php $this->load->view('nav');?>
         </header>
 
 

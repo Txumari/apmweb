@@ -140,6 +140,7 @@ class account extends CI_Controller {
         $user = new User();
 
         $user->get();
+        $this->output->enable_profiler(TRUE);
 
         $this->load->view('header', array('title' => 'User List'));
         $this->load->view('account/list', array('users' => $user));
