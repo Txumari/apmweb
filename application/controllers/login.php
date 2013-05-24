@@ -94,7 +94,7 @@ class Login extends CI_Controller {
                 if($login_redirect === TRUE)
                 {
                     // if the result was simply TRUE, redirect to the welcome page.
-                    redirect('welcome');
+                    redirect('projects/lists');
                 }
                 else
                 {
@@ -106,7 +106,7 @@ class Login extends CI_Controller {
         
         $this->output->enable_profiler(TRUE);
         
-        $this->load->view('header', array('title' => 'Login'));
+        $this->load->view('header', array('title' => 'Login','hide_menu'=>'true'));
         $this->load->view('login', array('user' => $user));
         $this->load->view('footer');
     }

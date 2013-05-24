@@ -1,4 +1,4 @@
-<form method="POST" class="form-horizontal"  <?php echo 'action="' . site_url("projects/edit") . '">'; ?>
+<form id="edit" method="POST" class="form-horizontal"  <?php echo 'action="' . site_url("projects/edit") . '">'; ?>
     <input type="hidden" <?php if(isset($dataView['project']) && !empty($dataView['project'])){ echo 'value="'.$dataView['project']->id.'"'; } ?> name="id">  
     <div class="control-group">
         <label class="control-label" for="inputName">Name</label>
@@ -41,13 +41,14 @@
         </div>
     </div>
         <div class="control-group">
-        <label class="control-label" for="input_members">Members</label>
-        <div class="controls">
+            <label class="control-label" for="input_members">Members</label>
+            <div class="controls">
             <?php 
                     if(isset($dataView['project']) && !empty($dataView['project'])){
                         foreach ($dataView['members'] as $id => $name) {
                             //If $name is in relation user "foreach(project->user)"
-                            echo form_label($name, $id);
+                            // echo form_label($name, $id,['class'=>'inline']);
+                            echo '<label for="'.$id.'" class="checkbox inline">';
                             $cheked = in_array($id, $dataView['members_relation']);
                             $data = array(
                                     'name'        => 'members[]',
@@ -55,13 +56,16 @@
                                     'value'       => $id,
                                     'checked'     => $cheked,
                                     );
+
                             echo form_checkbox($data);
+                            echo $name;
+                            echo '</label>';
                             // ,$dataView['project']->user->name
                         }
                     }else{
                         foreach ($dataView['members'] as $id => $name) {
                             //If $name is in relation user "foreach(project->user)"
-                            echo form_label($name, $id);
+                            echo '<label for="'.$id.'" class="checkbox inline">';
                             $data = array(
                                     'name'        => 'members[]',
                                     'id'          => $id,
@@ -69,20 +73,21 @@
                                     'checked'     => FALSE,
                                     );
                             echo form_checkbox($data);
-                            // ,$dataView['project']->user->name
+                            echo $name;
+                            echo '</label>';
                         }                    }
             ?>
+            </div>   
         </div>
-    </div> 
-   
-    <div class="form-actions">
-        <button type="submit" class="btn btn-primary">Save changes</button>
-        <button type="button" class="btn">Cancel</button>
-    </div>
+       <div class="control-group">
+            <div class="controls">
+            <button type="submit" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn">Cancel</button>
+        </div></div>
 </form>
 
 <?php
-if (isset($dataView['project']->error)) {
+if (isset($dataView['project']->error->string) && (!empty($dataView['project']->error->string))) {
     ?>
     <div class="alert alert-error">
         <?php echo $dataView['project']->error->string; ?>

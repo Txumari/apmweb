@@ -36,14 +36,15 @@
         </div>
     </div>     
    
-    <div class="form-actions">
-        <button type="submit" class="btn btn-primary">Save changes</button>
-        <button type="button" class="btn">Cancel</button>
-    </div>
+       <div class="control-group">
+            <div class="controls">
+            <button type="submit" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn">Cancel</button>
+        </div></div>
 </form>
 
 <?php
-if (isset($dataView['project']->error)) {
+if (isset($dataView['project']->error->string) && (!empty($dataView['project']->error->string))) {
     ?>
     <div class="alert alert-error">
         <?php echo $dataView['project']->error->string; ?>

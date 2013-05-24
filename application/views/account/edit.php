@@ -4,7 +4,7 @@
 
 
 
-<form method="POST" class="form-horizontal"  <?php echo 'action="' . site_url("account/edit_user") . '">'; ?>
+<form method="POST" class="form-horizontal"  <?php echo 'action="' . site_url("account/edit") . '">'; ?>
       <div class="control-group">
         <input type="hidden" <?php if(isset($user) && !empty($user)){ echo 'value="'.$user->id.'"'; } ?> name="id">
         <label class="control-label" for="inputName">Name</label>
@@ -50,14 +50,15 @@
             }?>
         </div>
     </div>
-    <div class="form-actions">
-        <button type="submit" class="btn btn-primary">Save changes</button>
-        <button type="button" class="btn">Cancel</button>
-    </div>
+       <div class="control-group">
+            <div class="controls">
+            <button type="submit" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn">Cancel</button>
+        </div></div>
 </form>
 
 <?php
-if (isset($user->error)) {
+if (isset($dataView['project']->error->string) && (!empty($dataView['project']->error->string))) {
     ?>
     <div class="alert alert-error">
         <?php echo $user->error->string; ?>

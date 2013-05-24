@@ -45,7 +45,7 @@ class account extends CI_Controller {
                 $message = 'You have successfully registered the user';
                 //@TODO Mostrar la variable message en el header si existe
                 $this->session->set_flashdata('message', $message);
-                redirect('account/user_list');
+                redirect('account/lists');
             }
         }
 
@@ -56,46 +56,51 @@ class account extends CI_Controller {
         $this->load->view('footer');
     }
 
-    function edit_user($id = -1) {
-        $this->output->enable_profiler(TRUE);
+    function edit($id = -1) {
 
-        $u = new User();
+        if($id = -1){
+            $this->add_user();
+        }else{
+            $this->output->enable_profiler(TRUE);
 
-        if ($this->input->post('id') == FALSE) {
-            $u->get_by_id($id);
+            $u = new User();
 
-            if (!$u->name) {
-                $message_error = 'User error, try Again.';
-                //@TODO Mostrar la variable message en el header si existe
-                $this->session->set_flashdata('message_error', $message_error);
-                redirect('account/user_list');
+            if ($this->input->post('id') == FALSE) {
+                $u->get_by_id($id);
+
+                if (!$u->name) {
+                    $message_error = 'User error, try Again.';
+                    //@TODO Mostrar la variable message en el header si existe
+                    $this->session->set_flashdata('message_error', $message_error);
+                    redirect('account/lists');
+                } else {
+                    $this->load->view('header', array('title' => 'Edit User'));
+                    $this->load->view('account/edit', array('user' => $u));
+                    $this->load->view('footer');
+                }
             } else {
-                $this->load->view('header', array('title' => 'Edit User'));
-                $this->load->view('account/edit', array('user' => $u));
-                $this->load->view('footer');
-            }
-        } else {
-            $u->id = $this->input->post('id');
-            $u->where('id', $u->id)->get();
-            if ($this->input->post('password') != FALSE) {
-                $u->password = $this->input->post('password');
-                $u->confirm_password = $this->input->post('confirm_password');
-            }
-            $u->name = $this->input->post('name');
-            $u->email = $this->input->post('email');
-            $u->confirm_email = $this->input->post('confirm_email');
-            $u->rol = $this->input->post('role');
+                $u->id = $this->input->post('id');
+                $u->where('id', $u->id)->get();
+                if ($this->input->post('password') != FALSE) {
+                    $u->password = $this->input->post('password');
+                    $u->confirm_password = $this->input->post('confirm_password');
+                }
+                $u->name = $this->input->post('name');
+                $u->email = $this->input->post('email');
+                $u->confirm_email = $this->input->post('confirm_email');
+                $u->rol = $this->input->post('role');
 
-            //$u->where('id =', $u->id)->update(array('name' => $u->name, 'email' => $u->email, 'rol' => $u->rol), FALSE);
+                //$u->where('id =', $u->id)->update(array('name' => $u->name, 'email' => $u->email, 'rol' => $u->rol), FALSE);
 
-            if ($u->save()) {
-                $message = 'You have successfully update the user';
-                $this->session->set_flashdata('message', $message);
-                redirect('account/user_list');
-            } else {
-                $this->load->view('header', array('title' => 'Edit User'));
-                $this->load->view('account/edit', array('user' => $u));
-                $this->load->view('footer');
+                if ($u->save()) {
+                    $message = 'You have successfully update the user';
+                    $this->session->set_flashdata('message', $message);
+                    redirect('account/lists');
+                } else {
+                    $this->load->view('header', array('title' => 'Edit User'));
+                    $this->load->view('account/edit', array('user' => $u));
+                    $this->load->view('footer');
+                }
             }
         }
     }
@@ -110,7 +115,7 @@ class account extends CI_Controller {
 
                 if ($user->save()) {
 
-                    $this->user_list();
+                    $this->lists();
                 } else {
                     $user->error_message('active', 'Error to active user');
                 }
@@ -128,7 +133,7 @@ class account extends CI_Controller {
 
                 if ($user->save()) {
 
-                    $this->user_list();
+                    $this->lists();
                 } else {
                     $user->error_message('active', 'Error to inactive user');
                 }
@@ -136,7 +141,7 @@ class account extends CI_Controller {
         }
     }
 
-    function user_list() {
+    function lists() {
         $user = new User();
 
         $user->get();

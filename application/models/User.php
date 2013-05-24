@@ -83,9 +83,6 @@ class User extends DataMapper {
 
         // Give this user their stored salt
         $this->salt = $u->salt;
-        var_dump($u->id);
-        var_dump($this->id);
-
         // Validate and get this user by their property values,
         // this will see the 'encrypt' validation run, encrypting the password with the salt
         $this->validate()->get();
