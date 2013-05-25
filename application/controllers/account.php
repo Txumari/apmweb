@@ -16,6 +16,7 @@ class account extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->load->library('login_manager');
+        $this->login_manager->check_login();        
         //$this->load->helper('url');
     }
 
