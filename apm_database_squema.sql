@@ -1,9 +1,9 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 3.5.2.2
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-05-2013 a las 18:34:34
+-- Tiempo de generación: 25-05-2013 a las 19:20:29
 -- Versión del servidor: 5.5.27
 -- Versión de PHP: 5.4.7
 
@@ -75,6 +75,24 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=33 ;
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `user_stories`
+--
+
+CREATE TABLE IF NOT EXISTS `user_stories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(150) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `project_id` int(11) NOT NULL,
+  `priority` int(11) NOT NULL,
+  `value` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`),
+  KEY `project_id` (`project_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
 --
 -- Restricciones para tablas volcadas
 --
@@ -92,6 +110,12 @@ ALTER TABLE `project`
 ALTER TABLE `project_user`
   ADD CONSTRAINT `project_user_ibfk_1` FOREIGN KEY (`project_id`) REFERENCES `project` (`id`),
   ADD CONSTRAINT `project_user_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+
+--
+-- Filtros para la tabla `user_stories`
+--
+ALTER TABLE `user_stories`
+  ADD CONSTRAINT `user_stories_ibfk_1` FOREIGN KEY (`project_id`) REFERENCES `project` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
