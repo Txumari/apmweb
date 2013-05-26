@@ -1,5 +1,3 @@
-
-
 <table class="table table-hover   ">
     <thead>
     <th>Name</th>

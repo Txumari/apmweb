@@ -35,6 +35,10 @@ class Project extends DataMapper {
         'user' => array(
             'class' => 'user',
             'other_field' => 'project'
+        ),
+        'user_stories' => array(
+            'class' => 'User_story',
+            'other_field' => 'project'
         )
     );
     

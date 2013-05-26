@@ -28,7 +28,7 @@ class projects extends CI_Controller {
     }
 
 
-    function lists($user = null){
+    function lists($user = null){// @TODO Manage this function with diferences between roles
 
         $project = new Project();
         if(!$user){
