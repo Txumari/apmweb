@@ -28,6 +28,8 @@
             
             <?php
         }// End foreach
+
+        echo '<a href="'. site_url("user_stories/add").'/'.$story->project->id. '">Add new Story</a>'
         ?>
 
     </tbody>

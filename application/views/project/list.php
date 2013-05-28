@@ -19,18 +19,18 @@
                 <td><?php echo $project->description; ?></td>
                 <td><?php echo $project->client->name; ?></td>
                 <td><?php echo $project->scrum_master->name; ?></td>
-                <td><?php 
+                <td><?php echo '<ul>';
                         foreach ($project->user as $u) {
                             echo '<li>'.$u->name.'</li>';
                         }
+                        echo '</ul>'
                         
                     ?>
                 </td>
                 <td>
                     <a href='<?php echo site_url("projects/edit").'/'.$project->id;  ?>'>Edit</a>
                     <a href='<?php echo site_url("projects/delete").'/'.$project->id;  ?>'>Delete</a>
-                    <a href='#'>View detailed</a>
-
+                    <a href='<?php echo site_url("projects/backlog").'/'.$project->id;  ?>'>View detailed</a>
                 </td>
             </tr>
             

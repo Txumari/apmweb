@@ -225,9 +225,28 @@ class projects extends CI_Controller {
             $this->session->set_flashdata('message', $message_error);
         }
         redirect('projects/lists');
+    }
 
-
-
+    // $id is de project of stories to list
+    function backlog($id = null){
+        $project = new Project();
+        if($id != null){
+            $project->get_by_id($id);
+            
+            if($project->name){
+                $this->output->enable_profiler(TRUE);
+                $this->load->view('header', array('title' => 'Project List'));
+                $this->load->view('project/view', array('project' => $project));
+                $this->load->view('stories/list', array('product_backlog' => $project->user_stories));
+                $this->load->view('footer'); 
+            }else{
+                $project->error_message('id', 'Please select an existing project');
+                redirect("projects/lists");
+            }
+        }else{
+            $project->error_message('id', 'Please select an existing project');
+            redirect("projects/lists");
+        }
     }
 
 }
