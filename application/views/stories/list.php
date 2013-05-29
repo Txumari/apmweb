@@ -8,13 +8,10 @@
     <th></th>
     </thead>
     <tbody>
-
         <?php
         foreach ($product_backlog as $story) {
             ?>
-
             <tr>
-               
                 <td><?php echo $story->name; ?></td>
                 <td><?php echo $story->description; ?></td>
                 <td><?php echo '<a href="#" >' . $story->project->name . '</a>'; ?></td>
@@ -25,12 +22,9 @@
                     <a href='<?php echo site_url("user_stories/delete").'/'.$story->id;  ?>'>Delete</a>
                 </td>
             </tr>
-            
             <?php
         }// End foreach
-
-        echo '<a href="'. site_url("user_stories/add").'/'.$story->project->id. '">Add new Story</a>'
+        echo '<a href="'. site_url("user_stories/add").'/'.$project_id. '">Add new Story</a>'
         ?>
-
     </tbody>
 </table>

@@ -237,7 +237,7 @@ class projects extends CI_Controller {
                 $this->output->enable_profiler(TRUE);
                 $this->load->view('header', array('title' => 'Project List'));
                 $this->load->view('project/view', array('project' => $project));
-                $this->load->view('stories/list', array('product_backlog' => $project->user_stories));
+                $this->load->view('stories/list', array('product_backlog' => $project->user_stories,'project_id' => $project->id));
                 $this->load->view('footer'); 
             }else{
                 $project->error_message('id', 'Please select an existing project');
