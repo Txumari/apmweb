@@ -18,9 +18,7 @@ class User extends DataMapper {
     // Database table relations
     var $auto_populate_has_one = TRUE;
     var $auto_populate_has_many = TRUE;
-    //public $has_many = array("projects");
 
-    // var $has_one = array();
     var $has_many = array(
         'project_client' => array(
             'class' => 'project',
@@ -33,7 +31,15 @@ class User extends DataMapper {
         'project' => array(
             'class' => 'project',
             'other_field' => 'user'
-        )
+        ),
+        'task' => array(
+            'class' => 'Task',
+            'other_field' => 'user'
+        ),
+        'task_responsible' => array(
+            'class' => 'Task',
+            'other_field' => 'responsible'
+        ),
     );
     
     
@@ -65,14 +71,6 @@ class User extends DataMapper {
         )
     );
 
-
-//    function __construct($id = NULL)
-//    {
-//        parent::__construct($id);
-//    }
-
-
-    // Login
     function login()
     {
         // Create a temporary user object
@@ -120,12 +118,9 @@ class User extends DataMapper {
             {
                 $this->salt = md5(uniqid(rand(), true));
             }
-            $this->{$field} = hash("sha512",$this->salt . $this->{$field});
-            
+            $this->{$field} = hash("sha512",$this->salt . $this->{$field});          
         }
     }
-
-
 }
 
 

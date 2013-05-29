@@ -31,12 +31,13 @@ class User_story extends DataMapper {
         )
     );
 
-    // var $has_many = array(
-    //     'task' => array(
-    //         'class' => 'Task',
-    //         'other_field' => 'user_story'
-    //     )
-    // );
+    var $has_many = array(
+        'tasks' => array(
+            'class' => 'Task',
+            'other_field' => 'user_story'
+        )
+    );
+
     
     // Validations rules
     var $validation = array(
