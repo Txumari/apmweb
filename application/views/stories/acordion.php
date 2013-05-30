@@ -14,9 +14,9 @@
             ?>
               <tr>
                   <td>
-                    <div class="accordion-group">
+                    <div class="">
                       <div class="accordion-heading">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">#</a>
+                        <button class="btn btn-info " type="button" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href=".collapse<?php echo $story->id; ?>">+</button>
                       </div>
                     </div>
                   </td>
@@ -30,15 +30,64 @@
                       <a href='<?php echo site_url("user_stories/delete").'/'.$story->id;  ?>'>Delete</a>
                   </td>
               </tr>
-              <tr  id="demo" class="collapse in" >
-                <td colspan="7">
-                  <div id="collapseOne" class="accordion-body collapse in">
-                    <div class="accordion-inner">
-                        Hola-----
+
+                      <?php
+                          foreach ($story->tasks as $task) { 
+                      ?>
+              <tr class="info">
+                <td>
+                  <div class="accordion-body collapse<?php echo $story->id; ?> collapse out">
+                    <div class="accordion-inner">                      
+                            <?php echo $task->name; ?>
                     </div>
                   </div>
                 </td>
-              </tr>
+                <td>
+                  <div class="accordion-body collapse<?php echo $story->id; ?> collapse out">
+                    <div class="accordion-inner"> 
+                      <?php echo $task->user_story->name; ?>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="accordion-body collapse<?php echo $story->id; ?> collapse out">
+                    <div class="accordion-inner"> 
+                      <?php echo $task->responsible->name; ?>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="accordion-body collapse<?php echo $story->id; ?> collapse out">
+                    <div class="accordion-inner"> 
+                      <?php echo $task->estimate; ?>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="accordion-body collapse<?php echo $story->id; ?> collapse out">
+                    <div class="accordion-inner"> 
+                      <?php echo $task->state; ?>
+                    </div>
+                  </div>
+                </td>
+                <td colspan="2">
+                  <div class="accordion-body collapse<?php echo $story->id; ?> collapse out">
+                    <div class="accordion-inner">                   
+                    <?php 
+                        echo '<ul>';
+                        foreach ($task->user as $member) {
+                            echo '<li>'.$member->name.'</li>';
+                        }
+                        echo '</ul>'
+                    ?>
+                    </div>
+                  </div>                    
+                </td>
+              </tr>                            
+                      <?php                            
+                          }
+                      ?>
+
 
             <?php
         }// End foreach

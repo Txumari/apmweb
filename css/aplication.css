@@ -62,3 +62,13 @@ form#edit{
 footer{
 	min-height: 100px;
 }
+
+.accordion-inner {
+padding: 9px 15px;
+border-top: none;
+}
+
+tr.info td{
+	padding: 0px;
+	border: none;
+}
