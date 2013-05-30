@@ -39,4 +39,28 @@ class tasks extends CI_Controller {
         }
     }
 
+    function delete($id = -1){
+        if($id != -1){
+            $task = new Task();
+            $task->get_by_id($id);
+            if( ! $task->exists())
+            {
+                show_error('Invalid task Id');
+            }else{
+                $id_project = $task->story_user->project->id;
+                if($task->delete()){
+                    $message = 'You have successfully deleted the task';
+                    $this->session->set_flashdata('message', $message);
+                }else{
+                    $message_error = $task->error->string;
+                    $this->session->set_flashdata('message', $message_error);
+                }
+            }
+        }else{
+            $message_error = 'Please select a valid task';
+            $this->session->set_flashdata('message', $message_error);
+        }
+        redirect('projects/backlog/'.$id_project);
+    }    
+
 }

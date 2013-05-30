@@ -6,7 +6,7 @@
     <th>Project</th>
     <th>Priority</th>
     <th>Value</th>
-    <th></th>
+    <th> <?php echo '<a href="'. site_url("user_stories/add").'/'.$project_id. '">Add new Story</a>' ?></th>
     </thead>
     <tbody>
         <?php
@@ -70,7 +70,7 @@
                     </div>
                   </div>
                 </td>
-                <td colspan="2">
+                <td>
                   <div class="accordion-body collapse<?php echo $story->id; ?> collapse out">
                     <div class="accordion-inner">                   
                     <?php 
@@ -83,6 +83,14 @@
                     </div>
                   </div>                    
                 </td>
+                <td>
+                  <div class="accordion-body collapse<?php echo $story->id; ?> collapse out">
+                    <div class="accordion-inner"> 
+                      <a href='<?php echo site_url("tasks/edit").'/'.$task->id;  ?>'>Edit</a>
+                      <a href='<?php echo site_url("tasks/delete").'/'.$task->id;  ?>'>Delete</a>
+                    </div>
+                  </div>
+                </td>                
               </tr>                            
                       <?php                            
                           }
@@ -91,7 +99,6 @@
 
             <?php
         }// End foreach
-        echo '<a href="'. site_url("user_stories/add").'/'.$project_id. '">Add new Story</a>'
         ?>
 
     </tbody>
