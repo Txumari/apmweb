@@ -25,7 +25,7 @@ class user_stories extends CI_Controller {
     	// $this->lists();
     }
 
- function lists($project_id = null){
+    function lists($project_id = null){
         if($project_id){
             $user_story = new User_story();
             $user_story->get_by_id($project_id);
@@ -34,9 +34,22 @@ class user_stories extends CI_Controller {
             $this->load->view('stories/list', array('product_backlog' => $user_story, 'project_id' => $project_id ));
             $this->load->view('footer');
         }else{
-
+            show_error('Invalid story Id');
         }
     }
+
+    function acordion($project_id = null){
+        if($project_id){
+            $user_story = new User_story();
+            $user_story->get_by_id($project_id);
+            $this->output->enable_profiler(TRUE);
+            $this->load->view('header', array('title' => 'Product Backlog'));
+            $this->load->view('stories/acordion', array('product_backlog' => $user_story, 'project_id' => $project_id ));
+            $this->load->view('footer');
+        }else{
+            show_error('Invalid story Id');
+        }
+    }    
 
     function add($id = -1){
 
