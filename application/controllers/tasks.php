@@ -64,18 +64,16 @@ class tasks extends CI_Controller {
     }
 
 
-    function add($id = -1){
+    function add($id_story = -1){
         $task = new Task();
         $story = new User_story();
-
         $responsible = new User();
         $responsible->where('rol','member')->get();
         foreach($responsible as $r){
             $responsibles[$r->id] = $r->name;
         }
-
-        if($id != -1){
-            $story->get_by_id($id);
+        if($id_story != -1){
+            $story->get_by_id($id_story);
             if($story->name){
                 $this->output->enable_profiler(TRUE);
                 $this->load->view('header', array('title' => 'New task'));
@@ -109,6 +107,70 @@ class tasks extends CI_Controller {
                 }
             }
         }
-    }    
+    }   
+
+
+    function edit($id = -1){
+        $task = new Task();
+        $responsible = new User();
+        $responsible->where('rol','member')->get();
+        foreach($responsible as $r){
+            $responsibles[$r->id] = $r->name;
+        }
+        if($id != -1){
+            $task->get_by_id($id);
+            if($task->name){
+
+                foreach ($task->user as $member) {
+                    $members_relation[] = $member->id;
+                }
+                $this->output->enable_profiler(TRUE);
+                $this->load->view('header', array('title' => 'Edit task'));
+                $this->load->view('tasks/edit', array('members_relation'=> $members_relation, 'task'=>$task,'responsibles'=> $responsibles));
+                $this->load->view('footer');
+            }else{
+                show_error('Invalid User Story Id');
+            }
+        }else{
+            if($this->input->post('id') != FALSE){
+                $task->id = $this->input->post('id');
+                $task->name = $this->input->post('name');
+                $task->state = $this->input->post('state');               
+                $task->estimate = $this->input->post('estimate'); 
+                $members_delete = new User();
+                $members_delete->where_not_in('id',$this->input->post('members'));
+                $members_delete->get();
+                $task->delete(
+                            array(
+                                    'user' => $members_delete->all
+                            )
+                        );
+                $members = new User();
+                $members->where_in('id',$this->input->post('responsibles'));
+                $members->get();
+                $story = new User_story();                            
+                $story->get_by_id($this->input->post('story_id'));
+                $responsible->get_by_id($this->input->post('responsible'));
+
+                
+                if($task->save(array('user' => $members->all, 'responsible' => $responsible))) {
+
+                        $this->session->set_flashdata('message', 'You have successfully save the '.$task->name.' task!');
+                        
+                        redirect('projects/backlog/'.$story->project->id);
+                }else{
+                    // echo $task->errors->string;
+
+                    foreach ($task->user as $member) {
+                        $members_relation[] = $member->id;
+                    }                    
+                    $this->output->enable_profiler(TRUE);
+                    $this->load->view('header', array('title' => 'New task'));
+                    $this->load->view('tasks/edit', array('members_relation'=> $this->input->post('responsibles'),'task'=>$task,'responsibles'=> $responsibles));
+                    $this->load->view('footer');                    
+                }
+            }
+        }
+    } 
 
 }
