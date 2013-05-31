@@ -75,7 +75,8 @@
                             echo form_checkbox($data);
                             echo $name;
                             echo '</label>';
-                        }                    }
+                        }   
+                    }   
             ?>
             </div>   
         </div>

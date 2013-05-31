@@ -52,12 +52,10 @@ class user_stories extends CI_Controller {
     }    
 
     function add($id = -1){
-
         $story = new User_story();
         $project = new Project();
 
         if($id != -1){
-
             $project->get_by_id($id);
             if($project->name){
                 $this->output->enable_profiler(TRUE);

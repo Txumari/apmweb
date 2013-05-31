@@ -17,6 +17,7 @@
                     <div class="">
                       <div class="accordion-heading">
                         <button class="btn btn-info " type="button" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href=".collapse<?php echo $story->id; ?>">+</button>
+                        <a class="btn btn-info " type="button" href="<?php echo site_url()."/tasks/add/". $story->id; ?>">New Task</a>
                       </div>
                     </div>
                   </td>
