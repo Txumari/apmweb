@@ -40,6 +40,10 @@ class User extends DataMapper {
             'class' => 'Task',
             'other_field' => 'responsible'
         ),
+        'timetasks' => array(
+            'class' => 'User',
+            'other_field' => 'user'
+        )
     );
     
     

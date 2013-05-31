@@ -6,39 +6,28 @@
  */
 
 /**
- * Description of Task
+ * Description of Times
  *
  * @author JesusM
- * @date 29-may-2013
+ * @date 31-may-2013
  */
-class Task extends DataMapper {
+class Times extends DataMapper {
 
     // Database table name
-    var $table = 'Task';
+    var $table = 'time';
     
     // Database realtions
     var $auto_populate_has_one = TRUE;
     var $auto_populate_has_many = TRUE;
 
     var $has_one = array(
-        'responsible' => array(
-            'class' => 'User',
-            'other_field' => 'task_responsible'
-        ),
-        'user_story' => array(
-            'class' => 'User_story',
-            'other_field' => 'tasks'
-        )
-    );
-
-    var $has_many = array(
         'user' => array(
-            'class' => 'user',
-            'other_field' => 'task'
+            'class' => 'User',
+            'other_field' => 'timetasks'
         ),
-        'timetask' => array(
-            'class' => 'Times',
-            'other_field' => 'task'
+        'task' => array(
+            'class' => 'Task',
+            'other_field' => 'timetask'
         )
     );
     
@@ -48,16 +37,16 @@ class Task extends DataMapper {
             'label' => 'name',
             'rules' => array('required', 'trim', 'unique', 'alpha_dash', 'min_length' => 3, 'max_length' => 20)
         ),
-        'responsible' => array(
-            'label' => 'Responsible',
-            'rules' => array('required')
+        'message' => array(
+            'label' => 'Message',
+            'rules' => array('required', 'min_length' => 3, 'max_length' => 250)
         ),
-        'state' => array(
-            'label' => 'State',
-            'rules' => array('required')
+        'description' => array(
+            'label' => 'Description',
+            'rules' => array('required', 'min_length' => 3, 'max_length' => 1000)
         ),
-        'estimate' => array(
-            'label' => 'Estimate',
+        'minutes' => array(
+            'label' => 'Time',
             'rules' => array('required')
         ),
         'user_story' => array(
@@ -65,9 +54,13 @@ class Task extends DataMapper {
             'rules' => array('required')
         ),
         'user' => array(
-            'label' => 'Members',
+            'label' => 'User',
             'rules' => array('required')
-        ) 
+        ),
+        'date' => array(
+            'label' => 'Date',
+            'rules' => array('required')
+        )
     );
 }
 

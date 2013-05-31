@@ -26,18 +26,18 @@ class tasks extends CI_Controller {
     }
 
 
-    function lists($user_story = null){
-        if($user_story){
-            $tasks = new Task();
-            $tasks->get_by_id($user_story);
-            $this->output->enable_profiler(TRUE);
-            // $this->load->view('header', array('title' => 'Product Backlog'));
-            $this->load->view('tasks/list', array('tasks' => $tasks));
-            // $this->load->view('footer');
-        }else{
-            show_error('Invalid story Id');
-        }
-    }
+    // function lists($user_story = null){
+    //     if($user_story){
+    //         $tasks = new Task();
+    //         $tasks->get_by_id($user_story);
+    //         $this->output->enable_profiler(TRUE);
+    //         // $this->load->view('header', array('title' => 'Product Backlog'));
+    //         $this->load->view('tasks/list', array('tasks' => $tasks));
+    //         // $this->load->view('footer');
+    //     }else{
+    //         show_error('Invalid story Id');
+    //     }
+    // }
 
     function delete($id = -1){
         if($id != -1){

@@ -1,9 +1,9 @@
-﻿-- phpMyAdmin SQL Dump
+-- phpMyAdmin SQL Dump
 -- version 3.5.2.2
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-05-2013 a las 19:20:29
+-- Tiempo de generación: 31-05-2013 a las 21:19:13
 -- Versión del servidor: 5.5.27
 -- Versión de PHP: 5.4.7
 
@@ -58,6 +58,58 @@ CREATE TABLE IF NOT EXISTS `project_user` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `task`
+--
+
+CREATE TABLE IF NOT EXISTS `task` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `name` varchar(250) NOT NULL,
+  `responsible_id` int(10) NOT NULL,
+  `state` enum('Running','Finish','Pause','Init') NOT NULL,
+  `estimate` int(3) NOT NULL,
+  `user_story_id` int(10) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `Responsible_id` (`responsible_id`),
+  KEY `fk_user_story` (`user_story_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `task_user`
+--
+
+CREATE TABLE IF NOT EXISTS `task_user` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `task_id` int(10) NOT NULL,
+  `user_id` int(10) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_task_id_user` (`task_id`),
+  KEY `fk_user_id_task` (`user_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `time`
+--
+
+CREATE TABLE IF NOT EXISTS `time` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `message` varchar(250) NOT NULL,
+  `description` text,
+  `minutes` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `task_id` int(11) NOT NULL,
+  `date` date NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_user` (`user_id`),
+  KEY `fk_task` (`task_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `user`
 --
 
@@ -91,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `user_stories` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`),
   KEY `project_id` (`project_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Restricciones para tablas volcadas
@@ -110,6 +162,27 @@ ALTER TABLE `project`
 ALTER TABLE `project_user`
   ADD CONSTRAINT `project_user_ibfk_1` FOREIGN KEY (`project_id`) REFERENCES `project` (`id`),
   ADD CONSTRAINT `project_user_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+
+--
+-- Filtros para la tabla `task`
+--
+ALTER TABLE `task`
+  ADD CONSTRAINT `fk_user_story` FOREIGN KEY (`user_story_id`) REFERENCES `user_stories` (`id`),
+  ADD CONSTRAINT `Responsible_id` FOREIGN KEY (`responsible_id`) REFERENCES `user` (`id`);
+
+--
+-- Filtros para la tabla `task_user`
+--
+ALTER TABLE `task_user`
+  ADD CONSTRAINT `fk_task_id_user` FOREIGN KEY (`task_id`) REFERENCES `task` (`id`),
+  ADD CONSTRAINT `fk_user_id_task` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+
+--
+-- Filtros para la tabla `time`
+--
+ALTER TABLE `time`
+  ADD CONSTRAINT `fk_task` FOREIGN KEY (`task_id`) REFERENCES `task` (`id`),
+  ADD CONSTRAINT `fk_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
 -- Filtros para la tabla `user_stories`
