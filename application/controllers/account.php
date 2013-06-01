@@ -148,7 +148,7 @@ class account extends CI_Controller {
         $user->get();
         $this->output->enable_profiler(TRUE);
 
-        $this->load->view('header', array('title' => 'User List'));
+        $this->load->view('header', array('title' => 'User List','menu_tabs' => TRUE));
         $this->load->view('account/list', array('users' => $user));
         $this->load->view('footer');
     }

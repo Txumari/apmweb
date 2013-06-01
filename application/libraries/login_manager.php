@@ -35,9 +35,19 @@ class Login_Manager {
 
 	}
 
+	function has_roles($roles = null){
+		$return_value = FALSE;
+		if($roles){
+			$u = $this->get_user();
+			if(in_array($u->rol,$roles)){			
+				$return_value = TRUE;
+			}
+		}
+		return $return_value;
+	}
+
 	function check_permision($restric_roles = ['']){
 		$u = $this->get_user();
-		var_dump($restric_roles);
 		if(in_array($u->rol,$restric_roles))
 		{
 			show_error('You do not have access to this section.');

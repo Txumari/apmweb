@@ -38,7 +38,7 @@ class projects extends CI_Controller {
     	}
         $this->output->enable_profiler(TRUE);
 
-        $this->load->view('header', array('title' => 'Project List'));
+        $this->load->view('header', array('title' => 'Project List','menu_tabs' => TRUE));
         $this->load->view('project/list', array('projects' => $project));
         $this->load->view('footer');
     }

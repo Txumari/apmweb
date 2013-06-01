@@ -31,6 +31,14 @@
                     <a href='<?php echo site_url("projects/edit").'/'.$project->id;  ?>'>Edit</a>
                     <a href='<?php echo site_url("projects/delete").'/'.$project->id;  ?>'>Delete</a>
                     <a href='<?php echo site_url("projects/backlog").'/'.$project->id;  ?>'>View detailed</a>
+                    <?php 
+                            $this->load->library('login_manager');
+                            if($this->login_manager->has_roles(["member","scrum master"])){
+                                echo '<a href="'.site_url("time/add").'/'.$project->id.'">Add Time</a>';
+                                echo '<a href="'.site_url("time/listProjectTime/").'/'.$project->name.'">View Times</a>';
+                            }
+                    ?>
+
                 </td>
             </tr>
             

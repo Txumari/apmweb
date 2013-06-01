@@ -33,10 +33,6 @@ class Times extends DataMapper {
     
     // Validations rules
     var $validation = array(
-        'name' => array(
-            'label' => 'name',
-            'rules' => array('required', 'trim', 'unique', 'alpha_dash', 'min_length' => 3, 'max_length' => 20)
-        ),
         'message' => array(
             'label' => 'Message',
             'rules' => array('required', 'min_length' => 3, 'max_length' => 250)
@@ -47,10 +43,6 @@ class Times extends DataMapper {
         ),
         'minutes' => array(
             'label' => 'Time',
-            'rules' => array('required')
-        ),
-        'user_story' => array(
-            'label' => 'User story',
             'rules' => array('required')
         ),
         'user' => array(

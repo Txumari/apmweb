@@ -47,6 +47,8 @@
             }
         }
         if(!isset($hide_menu) || $hide_menu == false){
+            if(!isset($menu_tabs)){ $menu_tabs = FALSE; } 
+            if($menu_tabs){
         ?>
 
 	   		<div class="container" id="main">
@@ -62,6 +64,10 @@
 				  </li>
 				</ul>
 		<?php
+            }else{
+                echo '<div class="container" id="main">';
+            }
+
 		}else{
 
 			echo '<div class="container">';
