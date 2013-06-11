@@ -32,6 +32,57 @@
                   </td>
               </tr>
 
+              <?php
+              // if(empty($story->tasks)){
+              ?>
+              <tr class="info table_head">
+                <td>
+                  <div class="accordion-body collapse<?php echo $story->id; ?> collapse out">
+                    <div class="accordion-inner">Name
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="accordion-body collapse<?php echo $story->id; ?> collapse out">
+                    <div class="accordion-inner">Story
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="accordion-body collapse<?php echo $story->id; ?> collapse out">
+                    <div class="accordion-inner">Responsable
+                    </div>
+                  </div>
+                </td>
+                  <td>
+                  <div class="accordion-body collapse<?php echo $story->id; ?> collapse out">
+                    <div class="accordion-inner">Estimate
+                    </div>
+                  </div>
+                </td>
+                  <td>
+                  <div class="accordion-body collapse<?php echo $story->id; ?> collapse out">
+                    <div class="accordion-inner">State
+                    </div>
+                  </div>
+                </td>
+                  <td>
+                  <div class="accordion-body collapse<?php echo $story->id; ?> collapse out">
+                    <div class="accordion-inner">Members
+                    </div>
+                  </div>
+                </td>
+                  <td>
+                  <div class="accordion-body collapse<?php echo $story->id; ?> collapse out">
+                    <div class="accordion-inner">#
+                    </div>
+                  </div>
+                </td>
+              </tr>
+
+              <?php
+               // }
+              ?>
                       <?php
                           foreach ($story->tasks as $task) { 
                       ?>

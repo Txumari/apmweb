@@ -1,7 +1,7 @@
 <table class="table table-hover   ">
     <thead>
+    	<th>Projects Details</th>
     	<th><?php echo $project->name; ?></th>
-    	<th></th>
     </thead>
     <tbody>
     	<tr>

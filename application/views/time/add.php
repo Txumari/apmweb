@@ -1,5 +1,5 @@
 <form method="POST" class="form-horizontal"  <?php echo 'action="' . site_url("time/add") . '">'; ?>
-      
+      <legend>Add new time task</legend>
       <div class="control-group">
         <input type="hidden" id="project_id" name="project_id" <?php if(isset($project_id) && !empty($project_id)){ echo 'value="'.$project_id.'"'; } ?> >
         <label class="control-label" for="inputMessage">Message</label>

@@ -1,4 +1,5 @@
 <form id="edit" method="POST" class="form-horizontal"  <?php echo 'action="' . site_url("projects/edit") . '">'; ?>
+    <legend>Add/Edit a project</legend>
     <input type="hidden" <?php if(isset($dataView['project']) && !empty($dataView['project'])){ echo 'value="'.$dataView['project']->id.'"'; } ?> name="id">  
     <div class="control-group">
         <label class="control-label" for="inputName">Name</label>
@@ -63,6 +64,8 @@
                             // ,$dataView['project']->user->name
                         }
                     }else{
+
+                        $newLine = 1;
                         foreach ($dataView['members'] as $id => $name) {
                             //If $name is in relation user "foreach(project->user)"
                             echo '<label for="'.$id.'" class="checkbox inline">';
@@ -75,6 +78,10 @@
                             echo form_checkbox($data);
                             echo $name;
                             echo '</label>';
+                            if($newLine % 2 == 0){
+                                echo '<br>';
+                            }
+                            $newLine++;
                         }   
                     }   
             ?>

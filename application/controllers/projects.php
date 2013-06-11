@@ -36,7 +36,7 @@ class projects extends CI_Controller {
     	}else{
     		$project->where('id',$user->id)->get();
     	}
-        $this->output->enable_profiler(TRUE);
+        $this->output->enable_profiler(FALSE);
 
         $this->load->view('header', array('title' => 'Project List','menu_tabs' => TRUE));
         $this->load->view('project/list', array('projects' => $project));

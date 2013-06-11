@@ -110,7 +110,7 @@ class User extends DataMapper {
     // Custom validate function
     // Encript
 
-// Validation prepping function to encrypt passwords
+    // Validation prepping function to encrypt passwords
     // If you look at the $validation array, you will see the password field will use this function
     function _encrypt($field)
     {

@@ -17,7 +17,7 @@ body{
 	max-width: 70%;
 }
 
-form#edit{
+/*form#edit{
 	margin: 0 auto;
 	max-width: 90%;
 	padding: 40px 15px 25px;
@@ -26,7 +26,7 @@ form#edit{
 	border-radius: 5px;
 	background: white;
 	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
-}
+}*/
 
 #menuContainer {
 	margin-top: 30px;
@@ -36,6 +36,7 @@ form#edit{
 #main {
 	background: white;
 	border-radius: 0px 0px 5px 5px;
+	/*padding-top: 15px;*/
 }
 
 .nav.nav-tabs{
@@ -60,7 +61,8 @@ form#edit{
 
 
 footer{
-	min-height: 100px;
+	margin: 10px auto;
+	height: 60px;
 }
 
 .accordion-inner {
@@ -71,4 +73,31 @@ border-top: none;
 tr.info td{
 	padding: 0px;
 	border: none;
+}
+
+/* Sticky footer */
+
+#push {
+	height: 60px;
+}
+
+#wrap {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -60px;
+}
+
+.left{
+	text-align: right;
+}
+
+legend{
+	width: 40%;
+	margin-left: 2%;
+	margin-top: 2px;
+}
+
+.table_head{
+	font-weight: bold;
 }

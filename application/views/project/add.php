@@ -1,4 +1,5 @@
 <form method="POST" class="form-horizontal"  <?php echo 'action="' . site_url("projects/add") . '">'; ?>
+    <legend>Add new project</legend>      
       <div class="control-group">
         <label class="control-label" for="inputName">Name</label>
         <div class="controls">

@@ -56,7 +56,7 @@ class UserModelTest extends CIUnit_TestCase
         {
              $u = new User();
              $u->password = '';
-            $u->_encrypt("password");
+             $u->_encrypt("password");
              $this->assertEmpty($u->password);
         }
         
@@ -82,7 +82,7 @@ class UserModelTest extends CIUnit_TestCase
         {
             $u = new User();
             $u->password = 'password';
-            $u->_encrypt($u->password);
+            $u->_encrypt("password");
             $this->assertNotEquals($u->password, 'password');
         }
         

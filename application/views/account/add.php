@@ -2,6 +2,8 @@
 ?>
 
 <form method="POST" class="form-horizontal"  <?php echo 'action="' . site_url("account/add_user") . '">'; ?>
+      
+    <legend>Add new user</legend>
       <div class="control-group">
         <label class="control-label" for="inputName">Name</label>
         <div class="controls">
@@ -41,7 +43,7 @@
             
             <?php if(isset($user) && !empty($user)){
                 $this->load->helper('form');
-                echo form_dropdown('role', array('member'=>'member','client'=>'client','admin'=>'admin','scrum master'=>'scrum master'), $user->rol);
+                echo form_dropdown('role', array('member'=>'member','client'=>'product owner ','scrum master'=>'scrum master','admin'=>'admin'), $user->rol);
 
             }?>
         </div>

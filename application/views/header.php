@@ -11,6 +11,7 @@
 		<link type="text/css" rel="stylesheet" href="<?php echo str_replace('index.php/', '', site_url('css/aplication.css')); ?>"/>
     </head>
     <body>
+        <div class="wrap">
     	<script src="http://code.jquery.com/jquery.js"></script>
     	<script src="<?php echo str_replace('index.php/', '', site_url('js/bootstrap.min.js')); ?>"></script>
 
