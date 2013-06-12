@@ -42,5 +42,5 @@ Login system is based on [Example](http://datamapper.wanwizard.eu/pages/examples
 * [PHPUnit](http://phpunit.de/): Test Framework
 * [my-ciunit](https://bitbucket.org/kenjis/my-ciunit): Fork of CIUnit
 * [Bootstrap](http://twitter.github.io/bootstrap/): Code licensed under Apache License v2.0
-
+ 
 
