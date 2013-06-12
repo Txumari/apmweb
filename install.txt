@@ -1,0 +1,9 @@
+1º Clone or copy the repository/folder in your web server folder
+
+2º Create database in your SGBD with scripts:
+	apm_database_squema.sql
+	apm_database_data.sql
+	sql_user.sql
+
+3º Visit this address http://localhost/index.php/login in your server machine
+
