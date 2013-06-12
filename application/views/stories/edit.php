@@ -25,9 +25,16 @@
         </div>
     </div>   
     <div class="control-group">
+        <label class="control-label" for="inputEstimate">Estimate</label>
+        <div class="controls">
+             <input type="number" id="inputEstimate" min="1" max="1000" name="estimate"
+            <?php if(isset($story) && !empty($story)){ echo 'value="'.$story->estimate.'"'; } ?>   required>
+        </div>
+    </div>     
+    <div class="control-group">
         <label class="control-label" for="inputValue">Value</label>
         <div class="controls">
-             <input type="number" id="inputValue" min="1" max="500" name="value"
+             <input type="number" id="inputValue" min="1" max="1000" name="value"
             <?php if(isset($story) && !empty($story)){ echo 'value="'.$story->value.'"'; } ?>   required>
         </div>
     </div>     

@@ -69,7 +69,8 @@ class user_stories extends CI_Controller {
             if($this->input->post('id') != FALSE){
                 $story->name = $this->input->post('name');
                 $story->description = $this->input->post('description');               
-                $story->value = $this->input->post('value');               
+                $story->value = $this->input->post('value');
+                $story->estimate = $this->input->post('estimate');
                 $story->priority = $this->input->post('priority'); 
                 $project->get_by_id($this->input->post('id'));
                 if($story->save(array('project' => $project))){
@@ -103,7 +104,8 @@ class user_stories extends CI_Controller {
                 $story->id = $this->input->post('id');
                 $story->name = $this->input->post('name');
                 $story->description = $this->input->post('description');               
-                $story->value = $this->input->post('value');               
+                $story->value = $this->input->post('value');
+                $story->estimate = $this->input->post('estimate');      
                 $story->priority = $this->input->post('priority'); 
                 $project->get_by_id($this->input->post('id'));
                 // if($story->save(array('project' => $project))){

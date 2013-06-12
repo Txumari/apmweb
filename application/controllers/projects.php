@@ -231,6 +231,7 @@ class projects extends CI_Controller {
     function backlog($id = null){
         $project = new Project();
         if($id != null){
+
             $project->get_by_id($id);
             
             if($project->name){

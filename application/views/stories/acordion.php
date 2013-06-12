@@ -5,6 +5,7 @@
     <th>Description</th>
     <th>Project</th>
     <th>Priority</th>
+    <th>Estimate</th>
     <th>Value</th>
     <th></th>
     </thead>
@@ -29,6 +30,7 @@
                   <td><?php echo $story->description; ?></td>
                   <td><?php echo '<a href="#" >' . $story->project->name . '</a>'; ?></td>
                   <td><?php echo $story->priority; ?></td>
+                  <td><?php echo $story->estimate; ?></td>
                   <td><?php echo $story->value; ?></td>
                   <td>
                     <div class="btn-toolbar">
@@ -52,13 +54,13 @@
                 </td>
                 <td>
                   <div class="accordion-body collapse<?php echo $story->id; ?> collapse out">
-                    <div class="accordion-inner">Story
+                    <div class="accordion-inner">Responsable
                     </div>
                   </div>
                 </td>
                 <td>
                   <div class="accordion-body collapse<?php echo $story->id; ?> collapse out">
-                    <div class="accordion-inner">Responsable
+                    <div class="accordion-inner">Story
                     </div>
                   </div>
                 </td>
@@ -80,7 +82,7 @@
                     </div>
                   </div>
                 </td>
-                  <td>
+                  <td colspan="2">
                   <div class="accordion-body collapse<?php echo $story->id; ?> collapse out">
                     <div class="accordion-inner">
                     </div>
@@ -105,14 +107,15 @@
                 <td>
                   <div class="accordion-body collapse<?php echo $story->id; ?> collapse out">
                     <div class="accordion-inner"> 
-                      <?php echo $task->user_story->name; ?>
+                      <?php echo $task->responsible->name; ?>
                     </div>
                   </div>
                 </td>
                 <td>
                   <div class="accordion-body collapse<?php echo $story->id; ?> collapse out">
                     <div class="accordion-inner"> 
-                      <?php echo $task->responsible->name; ?>
+                      <?php echo $task->user_story->name; ?>
+                      
                     </div>
                   </div>
                 </td>
@@ -143,7 +146,7 @@
                     </div>
                   </div>                    
                 </td>
-                <td>
+                <td colspan="2">
                   <div class="accordion-body collapse<?php echo $story->id; ?> collapse out">
                     <div class="accordion-inner"> 
 
@@ -161,7 +164,7 @@
         }// End foreach
         ?>
               <tr>
-                <td colspan="7">
+                <td colspan="8">
                   <?php echo '<a class="btn btn-primary " type="button" href="'. site_url("user_stories/add").'/'.$project_id. '">Add new Story</a>' ?>
                 </td>
               </tr>

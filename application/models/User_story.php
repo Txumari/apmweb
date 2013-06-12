@@ -19,6 +19,9 @@ class User_story extends DataMapper {
 
     // Database table name
     var $table = 'user_stories';
+
+    // Order by default
+    var $default_order_by = array('priority' => 'asc');
     
     // Database realtions
     var $auto_populate_has_one = TRUE;
@@ -55,6 +58,10 @@ class User_story extends DataMapper {
         ),
         'priority' => array(
             'label' => 'Priority',
+            'rules' => array('required','alpha_numeric')
+        ),
+        'estimate' => array(
+            'label' => 'Estimate',
             'rules' => array('required','alpha_numeric')
         ),
         'value' => array(
