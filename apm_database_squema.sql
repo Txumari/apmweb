@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-05-2013 a las 21:19:13
+-- Tiempo de generación: 12-06-2013 a las 17:15:44
 -- Versión del servidor: 5.5.27
 -- Versión de PHP: 5.4.7
 
@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `project_user` (
   KEY `project_id_2` (`project_id`,`user_id`),
   KEY `project_id_3` (`project_id`,`user_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
 
 -- --------------------------------------------------------
 
@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS `task` (
   PRIMARY KEY (`id`),
   KEY `Responsible_id` (`responsible_id`),
   KEY `fk_user_story` (`user_story_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 -- --------------------------------------------------------
 
@@ -86,7 +86,7 @@ CREATE TABLE IF NOT EXISTS `task_user` (
   PRIMARY KEY (`id`),
   KEY `fk_task_id_user` (`task_id`),
   KEY `fk_user_id_task` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
 
 -- --------------------------------------------------------
 
@@ -105,7 +105,7 @@ CREATE TABLE IF NOT EXISTS `time` (
   PRIMARY KEY (`id`),
   KEY `fk_user` (`user_id`),
   KEY `fk_task` (`task_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 -- --------------------------------------------------------
 
@@ -140,10 +140,11 @@ CREATE TABLE IF NOT EXISTS `user_stories` (
   `project_id` int(11) NOT NULL,
   `priority` int(11) NOT NULL,
   `value` int(11) NOT NULL,
+  `estimate` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`),
   KEY `project_id` (`project_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
 -- Restricciones para tablas volcadas
