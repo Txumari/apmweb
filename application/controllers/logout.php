@@ -23,7 +23,7 @@ class logout extends CI_Controller {
 
         $this->login_manager->logout();
 
-        $this->output->enable_profiler(TRUE);
+        $this->output->enable_profiler(FALSE);
 
         redirect(login);
     }

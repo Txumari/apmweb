@@ -46,7 +46,7 @@ class Task extends DataMapper {
     var $validation = array(
         'name' => array(
             'label' => 'name',
-            'rules' => array('required', 'trim', 'unique', 'alpha_dash', 'min_length' => 3, 'max_length' => 20)
+            'rules' => array('required', 'trim', 'unique', 'min_length' => 3, 'max_length' => 250)
         ),
         'responsible' => array(
             'label' => 'Responsible',

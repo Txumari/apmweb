@@ -30,7 +30,7 @@ class tasks extends CI_Controller {
     //     if($user_story){
     //         $tasks = new Task();
     //         $tasks->get_by_id($user_story);
-    //         $this->output->enable_profiler(TRUE);
+    //         $this->output->enable_profiler(FALSE);
     //         // $this->load->view('header', array('title' => 'Product Backlog'));
     //         $this->load->view('tasks/list', array('tasks' => $tasks));
     //         // $this->load->view('footer');
@@ -75,7 +75,7 @@ class tasks extends CI_Controller {
         if($id_story != -1){
             $story->get_by_id($id_story);
             if($story->name){
-                $this->output->enable_profiler(TRUE);
+                $this->output->enable_profiler(FALSE);
                 $this->load->view('header', array('title' => 'New task'));
                 $this->load->view('tasks/add', array('task'=>$task,'User_story' => $story, 'responsibles'=> $responsibles));
                 $this->load->view('footer');
@@ -100,7 +100,7 @@ class tasks extends CI_Controller {
                         redirect('projects/backlog/'.$story->project->id);
                 }else{
                     // echo $task->errors->string;
-                    $this->output->enable_profiler(TRUE);
+                    $this->output->enable_profiler(FALSE);
                     $this->load->view('header', array('title' => 'New task'));
                     $this->load->view('tasks/add', array('task'=>$task, 'User_story' => $story,'responsibles'=> $responsibles));
                     $this->load->view('footer');                    
@@ -124,7 +124,7 @@ class tasks extends CI_Controller {
                 foreach ($task->user as $member) {
                     $members_relation[] = $member->id;
                 }
-                $this->output->enable_profiler(TRUE);
+                $this->output->enable_profiler(FALSE);
                 $this->load->view('header', array('title' => 'Edit task'));
                 $this->load->view('tasks/edit', array('members_relation'=> $members_relation, 'task'=>$task,'responsibles'=> $responsibles));
                 $this->load->view('footer');
@@ -164,7 +164,7 @@ class tasks extends CI_Controller {
                     foreach ($task->user as $member) {
                         $members_relation[] = $member->id;
                     }                    
-                    $this->output->enable_profiler(TRUE);
+                    $this->output->enable_profiler(FALSE);
                     $this->load->view('header', array('title' => 'New task'));
                     $this->load->view('tasks/edit', array('members_relation'=> $this->input->post('responsibles'),'task'=>$task,'responsibles'=> $responsibles));
                     $this->load->view('footer');                    

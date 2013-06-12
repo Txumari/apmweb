@@ -1,4 +1,5 @@
 <form method="POST" class="form-horizontal"  <?php echo 'action="' . site_url("user_stories/add") . '">'; ?>
+      <legend>Add a new story</legend>
       <div class="control-group">
         <input type="hidden" id="id" name="id" <?php if(isset($project) && !empty($project)){ echo 'value="'.$project->id.'"'; } ?> >
         <label class="control-label" for="inputName">Name</label>
@@ -33,7 +34,7 @@
        <div class="control-group">
             <div class="controls">
             <button type="submit" class="btn btn-primary">Save changes</button>
-            <button type="button" class="btn">Cancel</button>
+                    <!-- <button type="button" class="btn">Cancel</button> -->
         </div></div>
 </form>
 

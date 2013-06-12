@@ -24,7 +24,7 @@ class account extends CI_Controller {
 
         $this->login_manager->logout();
 
-        $this->output->enable_profiler(TRUE);
+        $this->output->enable_profiler(FALSE);
 
         redirect(login);
     }
@@ -50,7 +50,7 @@ class account extends CI_Controller {
             }
         }
 
-        $this->output->enable_profiler(TRUE);
+        $this->output->enable_profiler(FALSE);
 
         $this->load->view('header', array('title' => 'New User'));
         $this->load->view('account/add', array('user' => $u));
@@ -62,7 +62,7 @@ class account extends CI_Controller {
         if($id = -1){
             $this->add_user();
         }else{
-            $this->output->enable_profiler(TRUE);
+            $this->output->enable_profiler(FALSE);
 
             $u = new User();
 
@@ -146,7 +146,7 @@ class account extends CI_Controller {
         $user = new User();
 
         $user->get();
-        $this->output->enable_profiler(TRUE);
+        $this->output->enable_profiler(FALSE);
 
         $this->load->view('header', array('title' => 'User List','menu_tabs' => TRUE));
         $this->load->view('account/list', array('users' => $user));

@@ -104,7 +104,7 @@ class Login extends CI_Controller {
             }
         }
         
-        $this->output->enable_profiler(TRUE);
+        $this->output->enable_profiler(FALSE);
         
         $this->load->view('header', array('title' => 'Login','hide_menu'=>'true'));
         $this->load->view('login', array('user' => $user));

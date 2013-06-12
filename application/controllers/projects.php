@@ -86,7 +86,7 @@ class projects extends CI_Controller {
     //         if(isset($scrum_masters_array)){
     //             $dataView['scrum_masters']= $scrum_masters_array;
     //         }
-    //         $this->output->enable_profiler(TRUE);
+    //         $this->output->enable_profiler(FALSE);
     //         $dataView['project'] = $p;
 
     //         $this->load->view('header', array('title' => 'Project List'));
@@ -191,7 +191,7 @@ class projects extends CI_Controller {
             if(isset($members_array)){
                 $dataView['members']= $members_array;
             } 
-            $this->output->enable_profiler(TRUE);
+            $this->output->enable_profiler(FALSE);
             $this->load->view('header', array('title' => 'Edit Project'));
             $this->load->view('project/edit', array('dataView' => $dataView));
             $this->load->view('footer');
@@ -234,7 +234,7 @@ class projects extends CI_Controller {
             $project->get_by_id($id);
             
             if($project->name){
-                $this->output->enable_profiler(TRUE);
+                $this->output->enable_profiler(FALSE);
                 $this->load->view('header', array('title' => 'Project List'));
                 $this->load->view('project/view', array('project' => $project));
                 $this->load->view('stories/acordion', array('product_backlog' => $project->user_stories,'project_id' => $project->id));

@@ -3,7 +3,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title><?php $page_title ?></title>
+        <title><?php echo $title; ?></title>
 
 		<link type="text/css" rel="stylesheet" href="<?php echo str_replace('index.php/', '', site_url('css/bootstrap.css')); ?>"/>
 		<link type="text/css" rel="stylesheet" href="<?php echo str_replace('index.php/', '', site_url('css/bootstrap-responsive.css')); ?>"/>
@@ -21,8 +21,6 @@
         				$this->load->view('nav');
         			}
         		?>
-				
-
         </header>
 
         <?php
@@ -54,13 +52,13 @@
 
 	   		<div class="container" id="main">
 	   			<ul class="nav nav-tabs">
-				  <li class="active">
+				  <li>
 					 <a class="" href="edit" >Create New</a>
 				  </li>
-				  <li>
+				  <li class="active">
 					  <a class="" href="lists">List All</a>
 				  </li>
-				  <li>
+				  <li class="disabled">
 					  <a class="" >List Paged</a>
 				  </li>
 				</ul>

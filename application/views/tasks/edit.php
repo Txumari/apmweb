@@ -1,4 +1,5 @@
 <form method="POST" class="form-horizontal"  <?php echo 'action="' . site_url("tasks/edit") . '">'; ?>
+      <legend>Edit a task</legend>      
       <div class="control-group">
         <input type="hidden" id="story_id" name="story_id" <?php if(isset($task) && !empty($task)){ echo 'value="'.$task->user_story->id.'"'; } ?> >
         <input type="hidden" id="id" name="id" <?php if(isset($task) && !empty($task)){ echo 'value="'.$task->id.'"'; } ?> >        
@@ -42,6 +43,7 @@
             <?php
 
                  if(isset($responsibles) && !empty($responsibles)){
+                        $newLine = 1;
                         foreach ($responsibles as $id => $name) {
                             //If $name is in relation user "foreach(project->user)"
                             echo '<label for="'.$id.'" class="checkbox inline">';
@@ -55,8 +57,13 @@
                             echo form_checkbox($data);
                             echo $name;
                             echo '</label>';
+                            if($newLine % 2 == 0){
+                                echo '<br>';
+                            }
+                            $newLine++;
                         }
                     }else{
+                        $newLine = 1;
                         foreach ($responsibles as $id => $name) {
                             //If $name is in relation user "foreach(project->user)"
                             echo '<label for="'.$id.'" class="checkbox inline">';
@@ -69,6 +76,10 @@
                             echo form_checkbox($data);
                             echo $name;
                             echo '</label>';
+                            if($newLine % 2 == 0){
+                                echo '<br>';
+                            }
+                            $newLine++;
                         }                        
                     }
         ?>
@@ -77,7 +88,7 @@
    <div class="control-group">
         <div class="controls">
         <button type="submit" class="btn btn-primary">Save changes</button>
-        <button type="button" class="btn">Cancel</button>
+        <!-- <button type="button" class="btn">Cancel</button> -->
         </div>
     </div>
 </form>

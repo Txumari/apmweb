@@ -1,4 +1,5 @@
 <form method="POST" class="form-horizontal"  <?php echo 'action="' . site_url("user_stories/edit") . '">'; ?>
+      <legend>Edit story</legend>
       <div class="control-group">
         <input type="hidden" id="id" name="id" <?php if(isset($story) && !empty($story)){ echo 'value="'.$story->id.'"'; } ?> >
         <input type="hidden" id="project_id" name="project_id" <?php if(isset($project) && !empty($project)){ echo 'value="'.$project->project->id.'"'; } ?> >
@@ -34,7 +35,7 @@
        <div class="control-group">
             <div class="controls">
             <button type="submit" class="btn btn-primary">Save changes</button>
-            <button type="button" class="btn">Cancel</button>
+                    <!-- <button type="button" class="btn">Cancel</button> -->
         </div></div>
 </form>
 

@@ -29,7 +29,7 @@ class user_stories extends CI_Controller {
         if($project_id){
             $user_story = new User_story();
             $user_story->get_by_id($project_id);
-            $this->output->enable_profiler(TRUE);
+            $this->output->enable_profiler(FALSE);
             $this->load->view('header', array('title' => 'Product Backlog'));
             $this->load->view('stories/list', array('product_backlog' => $user_story, 'project_id' => $project_id ));
             $this->load->view('footer');
@@ -42,7 +42,7 @@ class user_stories extends CI_Controller {
         if($project_id){
             $user_story = new User_story();
             $user_story->get_by_id($project_id);
-            $this->output->enable_profiler(TRUE);
+            $this->output->enable_profiler(FALSE);
             $this->load->view('header', array('title' => 'Product Backlog'));
             $this->load->view('stories/acordion', array('product_backlog' => $user_story, 'project_id' => $project_id ));
             $this->load->view('footer');
@@ -58,7 +58,7 @@ class user_stories extends CI_Controller {
         if($id != -1){
             $project->get_by_id($id);
             if($project->name){
-                $this->output->enable_profiler(TRUE);
+                $this->output->enable_profiler(FALSE);
                 $this->load->view('header', array('title' => 'Edit Project'));
                 $this->load->view('stories/add', array('project' => $project));
                 $this->load->view('footer');
@@ -91,7 +91,7 @@ class user_stories extends CI_Controller {
             $story->get_by_id($id);
 
             if($story->name){
-                $this->output->enable_profiler(TRUE);
+                $this->output->enable_profiler(FALSE);
                 $this->load->view('header', array('title' => 'Edit Project'));
                 $this->load->view('stories/edit', array('story' => $story));
                 $this->load->view('footer');

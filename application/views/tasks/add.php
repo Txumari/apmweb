@@ -1,4 +1,5 @@
 <form method="POST" class="form-horizontal"  <?php echo 'action="' . site_url("tasks/add") . '">'; ?>
+      <legend>Add a task</legend>
       <div class="control-group">
         <input type="hidden" id="story_id" name="story_id" <?php if(isset($User_story) && !empty($User_story)){ echo 'value="'.$User_story->id.'"'; } ?> >
         <label class="control-label" for="inputName">Name</label>
@@ -39,6 +40,8 @@
         <label class="control-label" for="Members">Members</label>
         <div class="controls">
             <?php
+
+                        $newLine = 1;
                         foreach ($responsibles as $id => $name) {
                             //If $name is in relation user "foreach(project->user)"
                             echo '<label for="'.$id.'" class="checkbox inline">';
@@ -51,6 +54,10 @@
                             echo form_checkbox($data);
                             echo $name;
                             echo '</label>';
+                            if($newLine % 2 == 0){
+                                echo '<br>';
+                            }
+                            $newLine++;
                         }
         ?>
         </div>
@@ -58,7 +65,7 @@
    <div class="control-group">
         <div class="controls">
         <button type="submit" class="btn btn-primary">Save changes</button>
-        <button type="button" class="btn">Cancel</button>
+                <!-- <button type="button" class="btn">Cancel</button> -->
         </div>
     </div>
 </form>

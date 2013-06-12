@@ -53,7 +53,7 @@
        <div class="control-group">
             <div class="controls">
             <button type="submit" class="btn btn-primary">Save changes</button>
-            <button type="button" class="btn">Cancel</button>
+                    <!-- <button type="button" class="btn">Cancel</button> -->
         </div></div>
 </form>
 

@@ -31,7 +31,7 @@ class time extends CI_Controller {
             $time = new Times();
             $time->where('task_id',$task_id);
             $time->get();
-            $this->output->enable_profiler(TRUE);
+            $this->output->enable_profiler(FALSE);
             $this->load->view('header', array('title' => 'Product Backlog'));
             $this->load->view('time/list', array('times' => $time));
             $this->load->view('footer');
@@ -46,7 +46,7 @@ class time extends CI_Controller {
             $time->where('task_id',$task_id);
             $time->where('user_id',$this->login_manager->get_user()->id);
             $time->get();
-            $this->output->enable_profiler(TRUE);
+            $this->output->enable_profiler(FALSE);
             $this->load->view('header', array('title' => 'Product Backlog'));
             $this->load->view('time/list', array('times' => $time));
             $this->load->view('footer');
@@ -66,7 +66,7 @@ class time extends CI_Controller {
             $time->where('user_id',$this->login_manager->get_user()->id);            
             $time->where_related('task/user_story/project', 'name', $project_name);
             $time->get();
-            $this->output->enable_profiler(TRUE);
+            $this->output->enable_profiler(FALSE);
             $this->load->view('header', array('title' => 'Product Backlog'));
             $this->load->view('time/list', array('times' => $time));
             $this->load->view('footer');
@@ -106,7 +106,7 @@ class time extends CI_Controller {
             foreach($task as $s){
                 $tasks[$s->id] = $s->user_story->name. ':' . $s->name;
             }
-            $this->output->enable_profiler(TRUE);            
+            $this->output->enable_profiler(FALSE);            
             $this->load->view('header', array('title' => 'Time task','menu_tabs'=> FALSE));
             $this->load->view('time/add', array('project_id' => $project_id, 'time' => $time,'tasks'=> $tasks));
             $this->load->view('footer');

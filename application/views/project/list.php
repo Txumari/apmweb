@@ -28,16 +28,23 @@
                     ?>
                 </td>
                 <td>
-                    <a href='<?php echo site_url("projects/edit").'/'.$project->id;  ?>'>Edit</a>
-                    <a href='<?php echo site_url("projects/delete").'/'.$project->id;  ?>'>Delete</a>
-                    <a href='<?php echo site_url("projects/backlog").'/'.$project->id;  ?>'>View detailed</a>
+
+                    <div class="btn-toolbar">
+                      <div class="btn-group">
+                        <a title="edit" class="btn" href="<?php echo site_url("projects/edit").'/'.$project->id;  ?>"><i class="icon-edit"></i></a>
+                        <a title="delete" class="btn" href="<?php echo site_url("projects/delete").'/'.$project->id;  ?>"><i class="icon-trash"></i></a>
+                        <a title="details" class="btn" href="<?php echo site_url("projects/backlog").'/'.$project->id;  ?>"><i class="icon-eye-open"></i></a>
+                        
+                  
                     <?php 
                             $this->load->library('login_manager');
                             if($this->login_manager->has_roles(["member","scrum master"])){
-                                echo '<a href="'.site_url("time/add").'/'.$project->id.'">Add Time</a>';
-                                echo '<a href="'.site_url("time/listProjectTime/").'/'.$project->name.'">View Times</a>';
+                                echo '<a title="add time" class="btn" href="'.site_url("time/add").'/'.$project->id.'"><i class="icon-time"></i></a>';
+                                echo '<a title="view times" class="btn" href="'.site_url("time/listProjectTime/").'/'.$project->name.'"><i class="icon-calendar"></i></a>';
                             }
                     ?>
+                    </div>
+                    </div>
 
                 </td>
             </tr>
